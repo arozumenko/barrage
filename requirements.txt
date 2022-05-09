@@ -1,0 +1,4 @@
+requests
+docker
+Flask
+flask_restful
