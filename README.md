@@ -5,6 +5,9 @@ Some quick and dirty barrage tool
 3. pull k6 to have it `docker pull grafana/k6` it used to generate load
 4. Clone repo and run `docker-compose up -d` it will build all required things
 5. open http://127.0.0.1:8000 and go to settings (gear icon)
+6. There are 2 weird fields to be filled: 
+   1. IP - which is whatever your IP on host (like 192.168.x.x)
+   2. location - which is absolute path to reports folder in git repo (whenever you put in on your machine) 
 
 Everything else in quite intuitive (i guess) at the end of the day it is only 3 containers with python UI (it is not uwsgi) Grafana and Influx.
 
