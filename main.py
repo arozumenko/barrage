@@ -9,11 +9,6 @@ headers = {
     'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.75 Safari/537.36',
 }
 
-proxies = {
-   'http': 'http://85.26.146.169:80',
-   'https': 'http://109.194.101.128:3128',
-}
-
 client = docker.from_env()
 
 def run_bomber(url, influx_ip, local_results, vus, dur):
