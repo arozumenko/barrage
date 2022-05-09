@@ -66,7 +66,7 @@ function scheduleRecurringBarrage() {
                 } else if (index == $("#target option").length - 1 ) {
                     barragedTargets = []
                     barragedTargets.push(item.value)
-                    _barrage(item.value, $("#vUsers").val(), $("#TTR").val())
+                    _barrage(item.value)
                     return false;
                 }
             })
@@ -81,22 +81,24 @@ function removeRecurringBarrage() {
 }
 
 function barrageBt() {
-    return _barrage($("#target").val(), $("#vUsers").val(), $("#TTR").val())
+    return _barrage($("#target").val())
 }
 
 function barrage(ev){
-    return _barrage($(ev.target).attr('data-url'), $("#vUsers").val(), $("#TTR").val())
+    return _barrage($(ev.target).attr('data-url') )
 }
 
-function _barrage(target, vus, dur){
+function _barrage(target){
 $.ajax({
       type: "POST",
       url: '/api/barrage',
       contentType:"application/json; charset=utf-8",
       data: JSON.stringify({
         "url": target,
-        "vus": vus,
-        "dur": dur
+        "vus": $("#vUsers").val(),
+        "dur": $("#TTR").val(),
+        "host": $("#host").val(),
+        "folder": $("#folder").val()
       }),
       success: function(result) {
         console.log(result)

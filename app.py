@@ -17,12 +17,13 @@ barrage_parser = reqparse.RequestParser()
 barrage_parser.add_argument("url")
 barrage_parser.add_argument("vus", type=int)
 barrage_parser.add_argument("dur", type=int)
-
+barrage_parser.add_argument("host", type=str)
+barrage_parser.add_argument("folder", type=str)
 
 class Barrage(Resource):
     def post(self):
         args = barrage_parser.parse_args()
-        run_bomber(args["url"], "192.168.10.9", "/Users/arozumenko/Development/barrage/results",
+        run_bomber(args["url"], args["host"], args["folder"],
                    args["vus"], args["dur"])
         return 0
 
