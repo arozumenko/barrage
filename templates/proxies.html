@@ -1,0 +1,44 @@
+{% include 'head.html' %}
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <!-- Topbar -->
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+                </nav>
+                <!-- End of Topbar -->
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+                    <div class="row">
+                        <!-- Area Chart -->
+                        <div class="col-12">
+                            <div class="card shadow mb-4">
+                                <!-- Card Header - Dropdown -->
+                                <div
+                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                    <h6 class="m-0 font-weight-bold text-primary">List of valid proxies</h6>
+                                    <a href="#" role="button" id="validateBtn" onclick="scanProxies()">
+                                        <i class="fas fa-play"></i>
+                                    </a>
+                                    <a href="#" role="button" id="setRecurring" onclick="loadProxies()">
+                                        <i class="fas fa-sync"></i>
+                                    </a>
+                                </div>
+                                <!-- Card Body -->
+                                <div class="card-body">
+                                    <form>
+                                        <div class="form-group">
+                                            <textarea class="form-control" id="proxies" rows="15"></textarea>
+                                          </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.container-fluid -->
+{% include 'bottom.html' %}

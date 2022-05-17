@@ -1,8 +1,13 @@
 from flask import Flask, render_template
 from flask_restful import Resource, Api, reqparse
-from main import validate_urls, run_bomber
+from main import run_bomber
+from test import handleProxyList, validate_urls
+from json import load
 app = Flask(__name__)
 api = Api(app)
+
+with open("./config.json") as f:
+    con = load(f)
 
 @app.after_request
 def apply_caching(response):
@@ -19,13 +24,24 @@ barrage_parser.add_argument("vus", type=int)
 barrage_parser.add_argument("dur", type=int)
 barrage_parser.add_argument("host", type=str)
 barrage_parser.add_argument("folder", type=str)
+barrage_parser.add_argument("proxy", type=str)
 
 class Barrage(Resource):
     def post(self):
         args = barrage_parser.parse_args()
         run_bomber(args["url"], args["host"], args["folder"],
-                   args["vus"], args["dur"])
+                   args["vus"], args["dur"], args["proxy"])
         return 0
+
+
+class RefreshProxies(Resource):
+    def post(self):
+        handleProxyList(con, proxy_ty=1)
+        return {"done": 1}
+
+    def get(self):
+        with open("./files/proxies/https.txt", "r") as f:
+            return {"proxies": f.read()}
 
 
 class ValidateUrls(Resource):
@@ -42,7 +58,12 @@ def index():
 def config_page():
     return render_template("config.html")
 
+@app.route("/proxy")
+def proxy_page():
+    return render_template("proxies.html")
+
 api.add_resource(ValidateUrls, '/api/validate')
 api.add_resource(Barrage, '/api/barrage')
+api.add_resource(RefreshProxies, '/api/proxies')
 
-app.run(host="0.0.0.0", port=5000, debug=True)
+app.run( port=5000, debug=True, threaded=True)

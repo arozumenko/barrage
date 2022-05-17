@@ -26,8 +26,7 @@
   "fiscalYearStartMonth": 0,
   "gnetId": 10660,
   "graphTooltip": 2,
-  "id": 4,
-  "iteration": 1652081128905,
+  "iteration": 1652785244183,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -573,7 +572,10 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "myinfluxdb",
+      "datasource": {
+        "type": "influxdb",
+        "uid": "P6C0B0CFA7252F455"
+      },
       "description": "Grouped by 1 sec intervals",
       "fill": 6,
       "fillGradient": 0,
@@ -617,6 +619,10 @@
       "targets": [
         {
           "alias": "max",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "P6C0B0CFA7252F455"
+          },
           "dsType": "influxdb",
           "groupBy": [
             {
@@ -661,6 +667,10 @@
         },
         {
           "alias": "p95",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "P6C0B0CFA7252F455"
+          },
           "dsType": "influxdb",
           "groupBy": [
             {
@@ -707,6 +717,10 @@
         },
         {
           "alias": "p90",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "P6C0B0CFA7252F455"
+          },
           "dsType": "influxdb",
           "groupBy": [
             {
@@ -753,6 +767,10 @@
         },
         {
           "alias": "min",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "P6C0B0CFA7252F455"
+          },
           "dsType": "influxdb",
           "groupBy": [
             {
@@ -794,6 +812,47 @@
               "value": "/^$URL$/"
             }
           ]
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "P6C0B0CFA7252F455"
+          },
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "http_req_failed",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "count"
+              }
+            ]
+          ],
+          "tags": []
         }
       ],
       "thresholds": [],

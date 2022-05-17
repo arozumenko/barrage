@@ -1,7 +1,6 @@
-from requests import get
 import docker
 import os
-from traceback import format_exc
+from test import check_proxy
 
 file_path = os.path.dirname(__file__)
 
@@ -11,31 +10,19 @@ headers = {
 
 client = docker.from_env()
 
-def run_bomber(url, influx_ip, local_results, vus, dur):
+def run_bomber(url, influx_ip, local_results, vus, dur, proxy):
+    environment={'URL': url.strip()}
+    if proxy:
+        proxy_list = proxy.split(",")
+        for proxy in proxy_list:
+            if check_proxy(url, proxy)["proxy"]:
+                environment["HTTP_PROXY"] = proxy
+                environment["HTTPS_PROXY"] = proxy
+                break
+        else:
+            return 0
     client.containers.run("grafana/k6", f'run --vus {vus} --duration {dur}s '
-                                        f'--out influxdb=http://{influx_ip}:8086/k6 barrage.js',
-                          environment={'URL': url.strip()}, volumes={local_results: {"bind": "/home/k6", 'mode': 'rw'}},
+                                        f'--out influxdb=http://{influx_ip}:8086/k6 '
+                                        f'--insecure-skip-tls-verify barrage.js',
+                          environment=environment, volumes={local_results: {"bind": "/home/k6", 'mode': 'rw'}},
                           auto_remove=True)
-
-
-def check_access(url):
-    print(f'Testing URL: {url}')
-    response = get(url, headers=headers, verify=False, timeout=60)
-    if response.status_code in [200, 302]:
-        print(f'Valid URL: {url}: {response.status_code}')
-        return True
-    else:
-        return False
-
-
-def validate_urls(url_list):
-    result = []
-    for each in url_list:
-        if not each:
-            continue
-        try:
-            result.append({"url": each, "status": check_access(each)})
-        except Exception:
-            print(format_exc())
-            result.append({"url": each, "status": False})
-    return result

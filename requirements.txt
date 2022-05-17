@@ -2,3 +2,4 @@ requests
 docker
 Flask
 flask_restful
+git+https://github.com/MHProDev/PyRoxy.git

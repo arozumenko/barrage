@@ -8,51 +8,17 @@
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
-                    <!-- Sidebar Toggle (Topbar) -->
-                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                        <i class="fa fa-bars"></i>
-                    </button>
-
-                    <!-- Topbar Search -->
-                    <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                        <input type="text" id="host" class="form-control bg-light border-0 small mr-2" placeholder="put IP here...">
-                        <input type="text" id="folder" class="form-control bg-light border-0 small" placeholder="Put folder path here">
-                    </form>
-
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
 
                         <div class="topbar-divider d-none d-sm-block"></div>
 
                         <!-- Nav Item - User Information -->
-                        <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
-                                <img class="img-profile rounded-circle"
-                                    src="img/undraw_profile.svg">
-                            </a>
-                            <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Profile
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Settings
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Activity Log
-                                </a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Logout
-                                </a>
-                            </div>
+                        <li class="nav-item mr-4">
+                            <input type="text" id="host" class="form-control bg-light border-0 small" placeholder="put IP here...">
+                        </li>
+                        <li>
+                            <input type="text" id="folder" class="form-control bg-light border-0 small" placeholder="Put folder path here">
                         </li>
 
                     </ul>
@@ -167,7 +133,7 @@
                         <div class="col-8">
                             <div class="card shadow mb-4">
                                 <div class="card-body">
-                                    <iframe src="http://127.0.0.1:3000/d-solo/k6dash/k6?orgId=1&var-Measurement=All&var-URL=All&from=now-30m&to=now&refresh=10s&orgId=1&theme=light&panelId=5" width="100%" height="350px" frameborder="0"></iframe>
+                                    <iframe src="http://127.0.0.1:3000/d-solo/k6dash/k6?orgId=1&from=now-30m&to=now&refresh=10s&theme=light&panelId=5" width="100%" height="350px" frameborder="0"></iframe>
                                 </div>
                             </div>
                         </div>
